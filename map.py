@@ -51,7 +51,7 @@ class Map:
                     self.world_map[(i, j)] = value
 
     def draw(self):
-        [pg.draw.rect(self.game.screen, 'red', (pos[0] * 100, pos[1] * 100, 100, 100), 2)#yes, so what this does is basically
+        [pg.draw.rect(self.game.screen, 'darkgrey', (pos[0] * 100, pos[1] * 100, 100, 100), 2)#yes, so what this does is basically
          #take the rectanges , draw them in red and position is fetches from the map and the size is also defined as 100
          for pos in self.world_map]
 

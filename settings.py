@@ -1,7 +1,7 @@
 import math
 #just coppied from a random vid man , not gonna lie
 # game settings
-RES = WIDTH, HEIGHT = 1920/2, 1080/2
+RES = WIDTH, HEIGHT = 1920, 1080 #changes res so I can see bettter lmao 
 # RES = WIDTH, HEIGHT = 1920, 1080
 HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
