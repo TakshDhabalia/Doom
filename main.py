@@ -33,8 +33,8 @@ class Game:
 
     def draw(self):
         self.screen.fill('black')#bg fill
-        self.map.draw()
-        self.player.draw()
+        #self.map.draw()
+        #self.player.draw()
 
     def check_events(self):#to add the main exit loop and its basically esc or ctrl+c
         for event in pg.event.get():
