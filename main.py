@@ -5,6 +5,7 @@ import sys
 from settings import *
 from map import *
 from player import *
+from raycating import * 
 
 
 #my day one documentation is going to be so bad cause i just made a mesh rn 
@@ -21,9 +22,11 @@ class Game:
     def new_game(self):
         self.map = Map(self)#to initialize the map and to put the basic vals in
         self.player = Player(self)
+        self.raycasting = RayCasting(self)
 
     def update(self):
         self.player.update()
+        self.raycasting.update()
         pg.display.flip()
         self.delta_time = self.clock.tick(FPS)
         pg.display.set_caption(f'{self.clock.get_fps() : .1f}')
