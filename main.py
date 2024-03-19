@@ -6,7 +6,7 @@ from settings import *
 from map import *
 from player import *
 from raycating import * 
-
+from obj_renderer import *
 
 #my day one documentation is going to be so bad cause i just made a mesh rn 
 
@@ -22,6 +22,7 @@ class Game:
     def new_game(self):
         self.map = Map(self)#to initialize the map and to put the basic vals in
         self.player = Player(self)
+        self.Object_renderer = Object_renderer(self)
         self.raycasting = RayCasting(self)
 
     def update(self):
