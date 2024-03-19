@@ -42,7 +42,9 @@ class Map:
         self.game = game
         self.mini_map = mini_map
         self.world_map = {}
-        self.get_map()  # Call the get_map method to populate world_map , this was causing so many errors man 
+        self.rows = len(self.mini_map)
+        self.cols = len(self.mini_map[0])
+        self.get_map()
 
     def get_map(self):
         for j, row in enumerate(self.mini_map):
@@ -51,12 +53,5 @@ class Map:
                     self.world_map[(i, j)] = value
 
     def draw(self):
-        [pg.draw.rect(self.game.screen, 'darkgrey', (pos[0] * 100, pos[1] * 100, 100, 100), 2)#yes, so what this does is basically
-         #take the rectanges , draw them in red and position is fetches from the map and the size is also defined as 100
+        [pg.draw.rect(self.game.screen, 'darkgray', (pos[0] * 100, pos[1] * 100, 100, 100), 2)
          for pos in self.world_map]
-
-
-
-
-
-        

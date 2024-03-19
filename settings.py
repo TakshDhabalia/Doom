@@ -1,11 +1,11 @@
 import math
-#just coppied from a random vid man , not gonna lie
+
 # game settings
-RES = WIDTH, HEIGHT = 1920, 1080 #changes res so I can see bettter lmao 
+RES = WIDTH, HEIGHT = 1600, 900
 # RES = WIDTH, HEIGHT = 1920, 1080
 HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
-FPS = 60
+FPS = 0
 
 PLAYER_POS = 1.5, 5  # mini_map
 PLAYER_ANGLE = 0
