@@ -208,6 +208,7 @@ class CyberDemonNPC(NPC):
         self.attack_damage = 15
         self.speed = 0.055
         self.accuracy = 0.25
+"""
 class Bapu(NPC):
     def __init__ (self, game, path='resources/sprites/npc/bapu_moment/0.png', pos=(11.5, 6.0),
                  scale=1.0, shift=0.04, animation_time=210):
@@ -218,7 +219,7 @@ class Bapu(NPC):
         self.speed = 0.055
         self.accuracy = 0.25
         
-
+"""
 
 
 
