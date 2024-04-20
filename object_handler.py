@@ -3,6 +3,7 @@ from npc import *
 from random import choices, randrange
 
 
+
 class ObjectHandler:
     def __init__(self, game):
         self.game = game

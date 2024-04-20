@@ -10,22 +10,25 @@ from object_handler import *
 from wepon import *
 from sound import *
 from pathfinder import *
-
+import asyncio
 
 class Game:
     def __init__(self):
         pg.init()
         pg.mouse.set_visible(False)
         self.screen = pg.display.set_mode(RES)
-        pg.event.set_grab(True)
+        pg.event.set_grab(True)#confining function
         self.clock = pg.time.Clock()
         self.delta_time = 1
         self.global_trigger = False
         self.global_event = pg.USEREVENT + 0
         pg.time.set_timer(self.global_event, 40)
-        self.new_game()
+        asyncio.run(self.setup())
 
-    def new_game(self):
+    async def setup(self):
+        await self.new_game()
+
+    async def new_game(self):
         self.map = Map(self)
         self.player = Player(self)
         self.object_renderer = ObjectRenderer(self)
@@ -35,8 +38,9 @@ class Game:
         self.sound = Sound(self)
         self.pathfinding = PathFinding(self)
         pg.mixer.music.play(-1)
+        await asyncio.sleep(0)
 
-    def update(self):
+    async def update(self):
         self.player.update()
         self.raycasting.update()
         self.object_handler.update()
@@ -44,15 +48,17 @@ class Game:
         pg.display.flip()
         self.delta_time = self.clock.tick(FPS)
         pg.display.set_caption(f'{self.clock.get_fps() :.1f}')
+        await asyncio.sleep(0)
 
-    def draw(self):
+    async def draw(self):
         # self.screen.fill('black')
         self.object_renderer.draw()
         self.weapon.draw()
+        await asyncio.sleep(0)
         # self.map.draw()
         # self.player.draw()
 
-    def check_events(self):
+    async def check_events(self):
         self.global_trigger = False
         for event in pg.event.get():
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
@@ -61,14 +67,15 @@ class Game:
             elif event.type == self.global_event:
                 self.global_trigger = True
             self.player.single_fire_event(event)
+            await asyncio.sleep(0)
 
-    def run(self):
+    async def run(self):
         while True:
-            self.check_events()
-            self.update()
-            self.draw()
-
+            await self.check_events()
+            await self.update()
+            await self.draw()
+            await asyncio.sleep(0)
 
 if __name__ == '__main__':
     game = Game()
-    game.run()
+    asyncio.run(game.run())
