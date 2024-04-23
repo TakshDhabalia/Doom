@@ -12,5 +12,5 @@ class Sound:
         self.npc_shot = pg.mixer.Sound(self.path + 'npc_attack.wav')
         self.npc_shot.set_volume(0.2)
         self.player_pain = pg.mixer.Sound(self.path + 'player_pain.wav')
-        self.theme = pg.mixer.music.load(self.path + 'Ala-Baburao-Ala-Baburao.wav')
+        self.theme = pg.mixer.music.load(self.path + 'theme.mp3')
         pg.mixer.music.set_volume(0.3)
