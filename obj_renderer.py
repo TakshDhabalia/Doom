@@ -45,15 +45,18 @@ class ObjectRenderer:
         pg.draw.rect(self.screen, FLOOR_COLOR, (0, HALF_HEIGHT, WIDTH, HEIGHT))
 
     def render_game_objects(self):
+        #rendered sprites are not supposed to be seen at all times so we sort them in reverse order to make the 
+        # - renderedsprites visible only when the player is close to it in direct LOS 
         list_objects = sorted(self.game.raycasting.objects_to_render, key=lambda t: t[0], reverse=True)
         for depth, image, pos in list_objects:
             self.screen.blit(image, pos)
 
     @staticmethod
+    #loads a set and defined texture and makes return the scaled texture .
     def get_texture(path, res=(TEXTURE_SIZE, TEXTURE_SIZE)):
         texture = pg.image.load(path).convert_alpha()
         return pg.transform.scale(texture, res)
-
+    #dictionary made to render wall textures
     def load_wall_textures(self):
         return {
             1: self.get_texture('resources/textures/1.png'),

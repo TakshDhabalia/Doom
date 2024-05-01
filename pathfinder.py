@@ -7,6 +7,7 @@ class PathFinding:
         self.game = game
         self.map = game.map.mini_map
         self.ways = [-1, 0], [0, -1], [1, 0], [0, 1], [-1, -1], [1, -1], [1, 1], [-1, 1]
+        #allow diagonal movement
         self.graph = {}
         self.get_graph()
 
@@ -22,6 +23,7 @@ class PathFinding:
         return path[-1]
 
     def bfs(self, start, goal, graph):
+        #we write a classical BFS algorithm to find the path from us to the NPC and invert it 
         queue = deque([start])
         visited = {start: None}
 
@@ -37,9 +39,11 @@ class PathFinding:
                     visited[next_node] = cur_node
         return visited
 
+
     def get_next_nodes(self, x, y):
         return [(x + dx, y + dy) for dx, dy in self.ways if (x + dx, y + dy) not in self.game.map.world_map]
 
+    #adjcent tiles calculation
     def get_graph(self):
         for y, row in enumerate(self.map):
             for x, col in enumerate(row):

@@ -89,7 +89,7 @@ class RayCasting:
                 x_hor %= 1
                 offset = (1 - x_hor) if sin_a > 0 else x_hor
 
-            # remove fishbowl effect
+            # remove fishbowl effect so that the pixel values dont get overblown and turn into a convex image
             depth *= math.cos(self.game.player.angle - ray_angle)
 
             # projection
