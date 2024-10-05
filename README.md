@@ -26,7 +26,7 @@ The project is designed for educational purposes, allowing developers to explore
 
 Below is a high-level diagram showing how the system components interact with each other:
 
-![System Diagram](./images/system_diagram.png)
+![System Diagram](./images/Doom_system_diagram.png)
 
 This diagram highlights the main files and modules interacting in the system, such as **Player.py**, **Map.py**, **Npc.py**, and **Raycasting.py**, working together to simulate the game’s core mechanics.
 
@@ -39,7 +39,7 @@ Here is an overview of the primary modules used in this project:
 - **Main.py**: The entry point of the game, responsible for initializing the game, starting the game loop, and managing the overall state.
 - **Map.py**: Manages the layout and rendering of the game world, including the design of the map and obstacles.
 - **Npc.py**: Handles non-player characters (NPCs), including their movements and interactions with the player.
-- **Player.py**: Contains the logic for player controls, including movement, shooting, and interacting with the environment.
+- **Player.py**: Contains the logic for splayer controls, including movement, shooting, and interacting with the environment.
 - **Raycasting.py**: Implements raycasting to render walls and objects from a first-person perspective.
 - **Obj_handler.py**: Manages in-game objects, handling their placement, interaction, and removal as necessary.
 - **Wepon.py**: Implements the weapons system, allowing the player to fire at enemies and interact with objects.
@@ -60,6 +60,6 @@ To run the project locally, follow these steps:
 
    ```bash
    git clone https://github.com/your-username/doom-python.git
-   
+
 2. You may need to do several pip installations but I am too lazy to create a req.txt file for this so yea .
 
