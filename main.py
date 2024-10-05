@@ -1,55 +1,81 @@
-import pygame as pg 
-import random 
-import moderngl
+import pygame as pg
 import sys
 from settings import *
 from map import *
 from player import *
-from raycating import * 
+from raycating import *
+from obj_renderer import *
+from sprite_object import *
+from object_handler import *
+from wepon import *
+from sound import *
+from pathfinder import *
+import asyncio
 
-
-#my day one documentation is going to be so bad cause i just made a mesh rn 
-
-#this class got all the main methods required for the game
 class Game:
     def __init__(self):
         pg.init()
-        self.screen = pg.display.set_mode(RES)#resolution from settings file
+        pg.mouse.set_visible(False)
+        self.screen = pg.display.set_mode(RES)
+        pg.event.set_grab(True)#confining function
         self.clock = pg.time.Clock()
         self.delta_time = 1
-        self.new_game()
+        self.global_trigger = False
+        self.global_event = pg.USEREVENT + 0
+        pg.time.set_timer(self.global_event, 40)
+        asyncio.run(self.setup())
 
-    def new_game(self):
-        self.map = Map(self)#to initialize the map and to put the basic vals in
+    async def setup(self):
+        await self.new_game()
+
+    async def new_game(self):
+        self.map = Map(self)
         self.player = Player(self)
+        self.object_renderer = ObjectRenderer(self)
         self.raycasting = RayCasting(self)
+        self.object_handler = ObjectHandler(self)
+        self.weapon = Weapon(self)
+        self.sound = Sound(self)
+        self.pathfinding = PathFinding(self)
+        pg.mixer.music.play(-1)
+        await asyncio.sleep(0)
 
-    def update(self):
+    async def update(self):
         self.player.update()
         self.raycasting.update()
+        self.object_handler.update()
+        self.weapon.update()
         pg.display.flip()
         self.delta_time = self.clock.tick(FPS)
-        pg.display.set_caption(f'{self.clock.get_fps() : .1f}')
+        pg.display.set_caption(f'{self.clock.get_fps() :.1f}')
+        await asyncio.sleep(0)
 
-    def draw(self):
-        self.screen.fill('black')#bg fill
-        #self.map.draw()
-        #self.player.draw()
+    async def draw(self):
+        # self.screen.fill('black')
+        self.object_renderer.draw()
+        self.weapon.draw()
+        await asyncio.sleep(0)
+        # self.map.draw()
+        # self.player.draw()
 
-    def check_events(self):#to add the main exit loop and its basically esc or ctrl+c
+    async def check_events(self):
+        self.global_trigger = False
         for event in pg.event.get():
             if event.type == pg.QUIT or (event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE):
                 pg.quit()
                 sys.exit()
+            elif event.type == self.global_event:
+                self.global_trigger = True
+            self.player.single_fire_event(event)
+            await asyncio.sleep(0)
 
-    def run(self):
-        while True:#while the game is running do this
-            self.check_events()
-            self.update()
-            self.draw()
+    async def run(self):
+        while True:
+            await self.check_events()
+            await self.update()
+            await self.draw()
+            await asyncio.sleep(0)
 
 if __name__ == '__main__':
     game = Game()
-    game.run()
-
-            
+    asyncio.run(game.run())

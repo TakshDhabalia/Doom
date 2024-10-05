@@ -1,11 +1,12 @@
 import math
-#just coppied from a random vid man , not gonna lie
+
 # game settings
-RES = WIDTH, HEIGHT = 1920, 1080 #changes res so I can see bettter lmao 
+RES = WIDTH, HEIGHT = 1600, 900
 # RES = WIDTH, HEIGHT = 1920, 1080
 HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
-FPS = 60
+#required for the 3D projection methods
+FPS = 0
 
 PLAYER_POS = 1.5, 5  # mini_map
 PLAYER_ANGLE = 0
@@ -22,14 +23,17 @@ MOUSE_BORDER_RIGHT = WIDTH - MOUSE_BORDER_LEFT
 FLOOR_COLOR = (30, 30, 30)
 
 FOV = math.pi / 3
+#feild of View
 HALF_FOV = FOV / 2
+#req for the Projection
 NUM_RAYS = WIDTH // 2
 HALF_NUM_RAYS = NUM_RAYS // 2
+#raycast need
 DELTA_ANGLE = FOV / NUM_RAYS
 MAX_DEPTH = 20
 
-SCREEN_DIST = HALF_WIDTH / math.tan(HALF_FOV)
-SCALE = WIDTH // NUM_RAYS
+SCREEN_DIST = HALF_WIDTH / math.tan(HALF_FOV) # 3D proj.
+SCALE = WIDTH // NUM_RAYS # scaling factor
 
 TEXTURE_SIZE = 256
 HALF_TEXTURE_SIZE = TEXTURE_SIZE // 2
